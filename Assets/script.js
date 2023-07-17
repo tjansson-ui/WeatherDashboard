@@ -1,11 +1,10 @@
 var apiKey = '59022ecce8e6f6ee80d2da7a1a24885a';
 var inputEl = document.getElementById('user_entry');
 var searchBtn = document.querySelector('button') ;
-var prevSearch = document.getElementById('search_history')
 var current = document.getElementById('main_display')
 var forecast = document.getElementById('forecast')
 var cityInfo = document.getElementById('city_info')
-var searchStorage = JSON.parse(localStorage.getItem('prevSearch')) || []
+var searchStorage = JSON.parse(localStorage.getItem('searchStorage')) || []
 
 // searchHistory();
 
@@ -16,6 +15,8 @@ function getWeather(city) {
     })
     .then (function (data) {
         // icon
+        current.innerHTML = ""
+
         var imgEl = document.createElement('img')
         imgEl.src = 'https://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '.png' 
 
@@ -49,8 +50,9 @@ function getWeather(city) {
         current.appendChild(humidEl)
         current.appendChild(windEl)
 
-        // addSearchHistory(city)
-        // searchHistory()
+        addSearchHistory()
+        searchHistory()
+
         weatherData = data
         forecastDisplay()
 
@@ -61,7 +63,8 @@ function getWeather(city) {
 }
 
 function forecastDisplay() {
- 
+    forecast.innerHTML = ""
+
     for(var i = 0; i<weatherData.list.length; i+=8 ) {
         // icon
         var imgEl = document.createElement('img')
@@ -95,9 +98,6 @@ function forecastDisplay() {
     }
 }
 
-//
-//Listeners
-//
 
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
@@ -114,22 +114,37 @@ searchBtn.addEventListener('click', function(event) {
 //storage functions
 //
 
-// function addSearchHistory(input) {
-//     searchStorage.push(input) // adds or builds the searchStorage array
-//     localStorage.setItem('prevSearch',JSON.stringify(prevSearch))
-// }
+function addSearchHistory() {
+    var history = inputEl.value.trim()
+    searchStorage.push(history) // adds or builds the searchStorage array
+    localStorage.setItem('searchStorage',JSON.stringify(searchStorage))
+}
 
-// function getSearchHistory(prevSearch) {
-//     var output = localStorage.getItem(prevSearch)
-//     return JSON.parse(output)
-// }
+function getSearchHistory(searchStorage) {
+    var output = localStorage.getItem(searchStorage)
+    return JSON.parse(output)
+}
 
-// function searchHistory() {
-//     var previousSearches = document.getElementById('search_history')
-//     previousSearches.innerHTML = ''
+function searchHistory() {
+     var previousSearches = document.getElementById('search_history')
+     previousSearches.innerHTML = ''
+    searchStorage = getSearchHistory('searchStorage')
+
+    if (searchStorage) {
+        searchStorage.reverse() 
+
+        for (var i = 0; i < searchStorage.length; i++) {
+        
+          var btnEl = document.createElement('button')
+          btnEl.innerText = searchStorage[i]
+
+          btnEl.addEventListener('click', function () {
+          inputEl.value= this.textContent // replaces user entry with history value
+          getWeather(this.textContent)
+          })
+          previousSearches.appendChild(btnEl)
+
+        }
     
-//     if (getSearchHistory('prevSearch')) {
-//         console.log('okay')
-//     }
-    
-// }
+    }
+}

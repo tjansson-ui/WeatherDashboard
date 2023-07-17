@@ -1,3 +1,12 @@
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
 header {
     color: white;
     background-color: navy;
@@ -22,13 +31,16 @@ main{
     display: flex;
     flex-direction: row;
 }
+#search_history{
+    display: flex;
+    flex-direction: column;
+}
 
 .main_display {
-    width: auto;
     margin: 15px;
-    /* display: flex;
-    flex-direction: row; */
-    align-content: center;
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
 }
 
 main ul {
