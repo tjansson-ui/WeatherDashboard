@@ -1,0 +1,14 @@
+header {
+    color: white;
+    background-color: navy;
+    text-align: center;
+}
+aside {
+    width: 20%;
+    margin: 15px;
+}
+main {
+    width: auto;
+    margin: 15px;
+}
+
