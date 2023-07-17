@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard Display</title>
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">    
     <link rel="stylesheet" href="./Assets/style.css">
+
 </head>
 <body>
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <aside>
+
+    <div class="row columns">
+    <aside class="column is-one-quarter">
         <section>
             <form action="">
                 <input type="text" placeholder="Type in a city name" id="user_entry">
@@ -25,12 +30,13 @@
             </ul>
          </section>
     </aside>
-    <main>
+    <main class="column">
         <section id="main_display">
             <ul id="city_info"></ul>
         </section>
-        <section id="forecast"></section>
+        <section id="forecast" ></section>
     </main>
+    </div>
     <script src="./Assets/script.js"></script>
 </body>
 </html>

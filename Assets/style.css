@@ -6,18 +6,48 @@ header {
 aside {
     width: 20%;
     margin: 15px;
-}
-main {
-    width: auto;
-    margin: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
-ul {
+main{
+    width: auto;
     display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    list-style-type: none;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.main_display {
+    width: auto;
+    margin: 15px;
+    /* display: flex;
+    flex-direction: row; */
+    align-content: center;
+}
+
+main ul {
+    display:block;
+}
+
+.forecastCard {
+      
+        margin: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
 }
 
 #forecast {
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     column-gap: 10px;
     align-content: center;
 }
