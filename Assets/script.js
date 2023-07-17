@@ -4,7 +4,7 @@ var searchBtn = document.querySelector('button') ;
 var prevSearch = document.getElementById('search_history')
 var current = document.getElementById('main_display')
 var forecast = document.getElementById('forecast')
-
+var cityInfo = document.getElementById('city_info')
 
 searchHistory();
 
@@ -14,11 +14,32 @@ function getWeather(city) {
         return response.json();
     })
     .then (function (data) {
-        // document.k 
+        // icon
+        var imgEl = document.createElement('img')
+        imgEl.src = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '.png' 
+
+        //name
         var cityEl = document.createElement('h2')
         cityEl.innerText = data.name
+        current.appendChild(imgEl)
         current.appendChild(cityEl)
+
+        //temp
+        var tempEl = document.createElement('li')
+        tempEl.innerText = 'Temperature (F): ' + data.main.temp 
+
+        //humidity
+        var humidEl = document.createElement('li')
+        humidEl.innerText = 'Humidity (%): ' + data.main.humidity
+
+        //wind speed
+        var windEl = document.createElement('li')
+        windEl.innerText = 'Wind Speed (mph): ' + data.main.humidity
         
+        //append stats to ul
+        cityInfo.appendChild(tempEl)
+        cityInfo.appendChild(humidEl)
+        cityInfo.appendChild(windEl)
     })
     .catch (function (error) {
         console.error('Error code:', error)
