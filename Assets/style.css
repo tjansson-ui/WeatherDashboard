@@ -36,24 +36,22 @@ main{
     flex-direction: column;
 }
 
-.main_display {
-    margin: 15px;
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-}
-
 main ul {
     display:block;
 }
 
 .forecastCard {
       
-        margin: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: navy;
+    color: aliceblue;
+}
 
+.forecastCard li {
+    margin-left: 10px;
 }
 
 #forecast {
